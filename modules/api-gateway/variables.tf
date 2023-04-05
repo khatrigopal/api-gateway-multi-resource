@@ -36,6 +36,13 @@ variable "integrations" {
   description = "The integrations to create for the API Gateway resources"
 }
 
+variables "lamda_permission" {
+  type        = map(object({
+    function_name           = string
+    source_arn             = string  
+  }))
+
+
 variable "deployments" {
   type        = map(object({
     stage_name = string
