@@ -32,6 +32,8 @@ resource "aws_api_gateway_integration" "example_integration" {
 }
 
 resource "aws_lambda_permission" "allow_api" {
+  for_each = var.lambda_functions
+  
   statement_id  = "AllowAPIgatewayInvokation"
   action        = "lambda:InvokeFunction"
   function_name =  each.function_name
