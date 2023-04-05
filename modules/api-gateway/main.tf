@@ -28,12 +28,15 @@ resource "aws_api_gateway_integration" "example_integration" {
   http_method             = each.value.http_method
   integration_http_method = each.value.integration_http_method
   type                    = each.value.type
-
-  integration_responses {
-    status_code = "200"
-  }
-
   uri = each.value.uri
+}
+
+resource "aws_lambda_permission" "allow_api" {
+  statement_id  = "AllowAPIgatewayInvokation"
+  action        = "lambda:InvokeFunction"
+  function_name =  each.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    =  each.source_arn
 }
 
 resource "aws_api_gateway_deployment" "example_deployment" {
