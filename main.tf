@@ -44,6 +44,18 @@ module "example_api_gateway" {
       uri                     = "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:example-lambda-function/invocations"
     }
   }
+  
+  lambda_permission = {
+    "lambda_function_1" = {
+      function_name = ""
+      source_arn = ""
+    }
+    "lambda_function_2" = {
+      function_name = ""
+      source_arn = ""
+    }
+  }
+    
 
   deployments = {
     "dev" = {
